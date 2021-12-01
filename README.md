@@ -42,4 +42,4 @@ For a set of synthetic bounding boxes, the results of running the algorithm are 
 
 From the unordered set of bounding boxes (left), a clustering (center) is first generated. Within each group, an aggregated box can then be calculated (right).
 
-![bounding boxes](Images/bboxes.png "Bounding Boxes from Crowd")
+![bounding boxes](images/bboxes.png "Bounding Boxes from Crowd")
