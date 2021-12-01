@@ -14,7 +14,7 @@ assignment_lr <- clustering of the lower right corner points
 
 # Find equivalence classes
 
-equivalence_classes <- {}
+partition <- {}
 for each box r in {1, ..., R-1}:
     if r is already in some equivalence class:
         skip
@@ -23,6 +23,7 @@ for each box r in {1, ..., R-1}:
         for each box s in {r+1, ..., R}:
             if r ~ s:
                 new_class <- new_class ∪ {r}
+        partition <- partition ∪ {new_class}
 ```
 
 where `~` refers to the equivalence relation
@@ -35,6 +36,9 @@ r ~ s iff
 ```
 
 From the groups we can infer the aggregated boxes using some statistics like mean or median over the box corners.
+
+Since it is not clear from the outset how many clusters must be selected, this number must first be found out. In general, we choose the partition for which the mean IoU is maximal. The mean IoU is calculated in such a way that we first calculate the pairwise IoU of all boxes within each group and then average over these values. Then these averaged values can be averaged again or aggregated in some other way. Note, however, that the "standard IoU" does not work as a metric here, since otherwise groups with one bounding box each would always be favored. Instead, we compute an average IoU that takes into account the number of elements per group.
+
 
 ## Results
 
